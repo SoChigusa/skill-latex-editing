@@ -1,0 +1,4 @@
+interface:
+  display_name: "LaTeX Editing"
+  short_description: "Edit, compile, and retain selected LaTeX build outputs"
+  default_prompt: "Use $latex-editing to edit and compile this LaTeX source, retaining only its BBL, PDF, and SyncTeX outputs."
