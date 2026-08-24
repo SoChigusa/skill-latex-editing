@@ -1,6 +1,6 @@
 ---
 name: latex-editing
-description: Edit and compile LaTeX source files using durable source-layout and build-artifact conventions, retaining only generated .bbl, .pdf, and .synctex.gz files after a successful build. Use whenever Codex creates or modifies .tex manuscripts, notes, reviews, reports, or other LaTeX documents. Apply alongside domain-specific skills such as paper coauthoring; this skill governs LaTeX source formatting and compilation outputs, not the document's substantive content.
+description: Edit and compile LaTeX source files using durable source-layout and build-artifact conventions, including overwrite-in-place latexdiff output for fine-grained revisions. Use whenever Codex creates or modifies .tex manuscripts, notes, reviews, reports, or other LaTeX documents. Apply alongside domain-specific skills such as paper coauthoring; this skill governs LaTeX source formatting and compilation outputs, not the document's substantive content.
 ---
 
 # LaTeX Editing
@@ -13,6 +13,16 @@ description: Edit and compile LaTeX source files using durable source-layout and
 - Do not mistake abbreviations, decimal points, citation keys, or command arguments for sentence endings.
 - Keep display mathematics, environments, lists, tables, and command-only lines formatted according to their LaTeX structure.
 - When changing a prose paragraph, reflow the changed paragraph so all of its sentences follow the sentence-per-line convention.
+
+## Show fine-grained revisions with latexdiff
+
+- For a local or fine-grained revision to an existing LaTeX document, preserve the root source immediately before the requested edit in a temporary baseline and generate a latexdiff against the completed source.
+- Compile the latexdiff and provide both its `.tex` source and PDF so the user can inspect the changes directly.
+- Use stable output names derived from the document root, such as `<root>_latexdiff.tex` and `<root>_latexdiff.pdf`.
+- Overwrite the same latexdiff files for each subsequent revision request; do not create a new diff file or add an instruction-specific suffix for every request unless the user explicitly asks to retain a history.
+- Remove the temporary baseline after the diff has been generated and verified; do not accumulate per-request source snapshots in the project.
+- Prefer word-level markup for prose. If fine-grained math markup produces invalid LaTeX, use whole-equation markup or another minimally coarser setting that compiles without changing the manuscript source.
+- Apply the compilation, verification, and build-artifact cleanup rules below to the latexdiff document as well.
 
 ## Compile and verify
 
