@@ -1,6 +1,6 @@
 ---
 name: latex-editing
-description: Edit and compile LaTeX source files using durable source-layout and build-artifact conventions, including overwrite-in-place latexdiff output for fine-grained revisions. Use whenever Codex creates or modifies .tex manuscripts, notes, reviews, reports, or other LaTeX documents. Apply alongside domain-specific skills such as paper coauthoring; this skill governs LaTeX source formatting and compilation outputs, not the document's substantive content.
+description: Create, edit, and compile LaTeX documents and their BibTeX bibliographies using INSPIRE-first bibliography sourcing, durable source layout, and overwrite-in-place latexdiff outputs. Use whenever Codex creates or modifies LaTeX manuscripts, notes, reviews, reports, or their bibliography entries. Apply alongside domain-specific skills; this skill governs source conventions, bibliography provenance, and compilation outputs.
 ---
 
 # LaTeX Editing
@@ -13,6 +13,18 @@ description: Edit and compile LaTeX source files using durable source-layout and
 - Do not mistake abbreviations, decimal points, citation keys, or command arguments for sentence endings.
 - Keep display mathematics, environments, lists, tables, and command-only lines formatted according to their LaTeX structure.
 - When changing a prose paragraph, reflow the changed paragraph so all of its sentences follow the sentence-per-line convention.
+
+## Source bibliography entries
+
+Apply the author's standing preference when creating or updating bibliography entries for any LaTeX manuscript or note:
+
+1. Search INSPIRE HEP first. If the work has a record, use its official BibTeX export.
+2. If no INSPIRE record exists, consult Google Scholar and use its BibTeX export when available.
+3. If neither source has a record, construct the entry from verified bibliographic information, following the INSPIRE BibTeX conventions, and explicitly report which entries were made manually.
+
+Match the work by DOI or arXiv identifier, then title and authors as needed; do not substitute a different work or edition. Preserve existing citation keys unless the author requests renaming. Preserve the authoritative metadata and LaTeX protection of names and titles; record meaningful corrections such as newly available publication details.
+
+Distinguish an absent record from an inaccessible service. If access prevents obtaining an export, try available permitted access methods, then clearly report any manually reconstructed fallback and its verified sources; never label it an official export. This sourcing rule applies to bibliography work, not a requirement to recheck every reference during an unrelated LaTeX edit.
 
 ## Show fine-grained revisions with latexdiff
 
