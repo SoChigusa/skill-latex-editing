@@ -1,54 +1,61 @@
 ---
 name: latex-editing
-description: Create, edit, and compile LaTeX documents and their BibTeX bibliographies using INSPIRE-first bibliography sourcing, durable source layout, and overwrite-in-place latexdiff outputs. Use whenever Codex creates or modifies LaTeX manuscripts, notes, reviews, reports, or their bibliography entries. Apply alongside domain-specific skills; this skill governs source conventions, bibliography provenance, and compilation outputs.
+description: Draft, revise, review, and compile academic LaTeX manuscripts and technical notes while preserving author intent. Use for prose, equations, notation, figures, tables, author comments, and BibTeX work, including mechanical LaTeX edits, INSPIRE-first bibliography sourcing, and latexdiff verification.
 ---
 
 # LaTeX Editing
 
-## Apply the source convention
+Treat the manuscript as a polished scientific argument, not as a transcript of the author–assistant conversation.
+For substantive drafting or revision, read [references/house-style.md](references/house-style.md).
+Before modifying LaTeX or bibliography files, or compiling a document, read the relevant sections of [references/latex-workflow.md](references/latex-workflow.md): source conventions, bibliography sourcing, latexdiff, and build verification.
+For local revisions, preserve the temporary latexdiff baseline before editing.
 
-- Preserve the project's existing structure, macros, bibliography system, and unrelated user changes.
-- Put a physical newline after every complete prose sentence in edited text.
-- Keep each sentence on one source line unless an existing structural construct requires otherwise.
-- Do not mistake abbreviations, decimal points, citation keys, or command arguments for sentence endings.
-- Keep display mathematics, environments, lists, tables, and command-only lines formatted according to their LaTeX structure.
-- When changing a prose paragraph, reflow the changed paragraph so all of its sentences follow the sentence-per-line convention.
+## Establish the editing contract
 
-## Source bibliography entries
+1. Determine whether the user requested an explanation, a review, or a manuscript edit.
+2. Do not edit files for a console-only derivation, question, or diagnosis.
+3. Inspect repository instructions, manuscript macros, journal class, build commands, and the current Git diff before editing.
+4. Preserve unrelated user changes and local style unless the user explicitly asks for a global conversion.
+5. Apply the user's explicit scope narrowly; do not turn a local correction into an unsolicited rewrite.
 
-Apply the author's standing preference when creating or updating bibliography entries for any LaTeX manuscript or note:
+For a comment-only review, apply `latex-collaborative-revision` when relevant and let its designated-macro and comment-preservation workflow govern the review. The comment rules below are defaults for direct revision; explicit user scope and project-specific conventions take precedence.
 
-1. Search INSPIRE HEP first. If the work has a record, use its official BibTeX export.
-2. If no INSPIRE record exists, consult Google Scholar and use its BibTeX export when available.
-3. If neither source has a record, construct the entry from verified bibliographic information, following the INSPIRE BibTeX conventions, and explicitly report which entries were made manually.
+## Handle author comments safely
 
-Match the work by DOI or arXiv identifier, then title and authors as needed; do not substitute a different work or edition. Preserve existing citation keys unless the author requests renaming. Preserve the authoritative metadata and LaTeX protection of names and titles; record meaningful corrections such as newly available publication details.
+Discover the comment macros before responding.
+Use this default convention when the manuscript defines these commands:
 
-Distinguish an absent record from an inaccessible service. If access prevents obtaining an export, try available permitted access methods, then clearly report any manually reconstructed fallback and its verified sources; never label it an official export. This sourcing rule applies to bibliography work, not a requirement to recheck every reference during an unrelated LaTeX edit.
+- Treat `\rem{...}` as an actionable revision request.
+- Resolve only the `\rem{...}` comments in scope, incorporate the necessary content into clean prose, and remove those resolved comments.
+- Treat `\comm{...}` as the author's private note.
+- Never delete, answer, paraphrase, or use a `\comm{...}` note as authorization to rewrite the manuscript unless the user explicitly says to do so.
 
-## Show fine-grained revisions with latexdiff
+Do not treat every `\rem{...}` as immediate authorization to edit.
+If a comment contains `Question`, `discussion`, `discuss`, `console`, or otherwise asks for an opinion, explanation, choice, or joint decision, treat it as a deliberative comment:
 
-- For a local or fine-grained revision to an existing LaTeX document, preserve the root source immediately before the requested edit in a temporary baseline and generate a latexdiff against the completed source.
-- Compile the latexdiff and provide both its `.tex` source and PDF so the user can inspect the changes directly.
-- Use stable output names derived from the document root, such as `<root>_latexdiff.tex` and `<root>_latexdiff.pdf`.
-- Overwrite the same latexdiff files for each subsequent revision request; do not create a new diff file or add an instruction-specific suffix for every request unless the user explicitly asks to retain a history.
-- Remove the temporary baseline after the diff has been generated and verified; do not accumulate per-request source snapshots in the project.
-- Prefer word-level markup for prose. If fine-grained math markup produces invalid LaTeX, use whole-equation markup or another minimally coarser setting that compiles without changing the manuscript source.
-- Apply the compilation, verification, and build-artifact cleanup rules below to the latexdiff document as well.
+1. Leave the comment and manuscript text unchanged.
+2. Answer the question in the console, explain the relevant options, and give a recommendation when useful.
+3. Wait for the author's explicit decision before editing the manuscript or removing the comment.
 
-## Compile and verify
+A general request to “address the comments” does not override this deliberative-comment rule.
+If one comment mixes an explicit revision instruction with a request for discussion, pause the manuscript edit for that comment and resolve the ambiguity with the author first.
 
-1. Identify the document's root `.tex` file and its established build command from project instructions, a `Makefile`, or Latexmk configuration.
-2. Compile after editing and enable SyncTeX generation. With Latexmk, prefer `latexmk -pdf -synctex=1 <root>.tex` plus the project's usual interaction and error flags. With a direct TeX engine, pass `-synctex=1`.
-3. Treat the edit as verified only if the build succeeds and both `<root>.pdf` and `<root>.synctex.gz` exist. If the document uses BibTeX or Biber, also verify that `<root>.bbl` exists.
-4. After a successful build, retain only the generated `<root>.bbl`, `<root>.pdf`, and `<root>.synctex.gz` files. A document without a bibliography need not produce a `.bbl`.
-5. Delete all other files generated by that build, such as `.aux`, `.bcf`, `.blg`, `.fdb_latexmk`, `.fls`, `.log`, `.out`, `.run.xml`, and `.toc` files. Resolve and delete explicit build-output paths; do not use a broad glob or recursive deletion.
-6. Never delete source files, bibliography databases, figures, class or style files, project configuration, pre-existing user files, or any file whose provenance as a build output is uncertain.
-7. If compilation fails, report the failure and the relevant diagnostic. Do not claim success or conceal the failed build by deleting its log.
+If the project specifies different semantics, follow the project-specific convention instead.
 
-## Combine with job-specific skills
+## Revise in context
 
-Apply this skill concurrently with any relevant content or workflow skill.
-Let the job-specific skill govern scientific content, argumentation, citations, voice, and collaboration workflow.
-Let this skill govern sentence-per-line source layout, compilation verification, and retention of only the `.bbl`, PDF, and SyncTeX build artifacts.
-Follow an explicit user instruction when it overrides either layer.
+1. Read the complete paragraph and subsection around the target.
+2. Search the whole manuscript for every affected symbol, definition, label, citation, figure, table, and repeated explanation.
+3. Identify the logical role of the passage before rewriting it.
+4. Write the shortest complete argument that preserves scientific accuracy.
+5. Remove obsolete or duplicate definitions created by the revision.
+6. Re-read the surrounding transition and the manuscript-wide terminology after the edit.
+
+Do not encode the dialogue in the paper.
+When the author asks whether “A is really C rather than B,” write the final positive account of C unless the A/B contrast is scientifically necessary.
+
+## Verify and hand off
+
+Apply the compilation, log inspection, visual verification, latexdiff, and artifact-retention rules in [references/latex-workflow.md](references/latex-workflow.md).
+Confirm that protected author comments and unrelated files did not change.
+Report the completed outcome, the files changed, the verification performed, and any unresolved issue.
