@@ -6,7 +6,7 @@ description: Draft, revise, review, and compile academic LaTeX manuscripts and t
 # LaTeX Editing
 
 Treat the manuscript as a polished scientific argument, not as a transcript of the author–assistant conversation.
-For substantive drafting or revision, read [references/house-style.md](references/house-style.md).
+For prose drafting, revision, review, or citation placement, read [references/house-style.md](references/house-style.md).
 Before modifying LaTeX or bibliography files, or compiling a document, read the relevant sections of [references/latex-workflow.md](references/latex-workflow.md): source conventions, bibliography sourcing, latexdiff, and build verification.
 For local revisions, preserve the temporary latexdiff baseline before editing.
 

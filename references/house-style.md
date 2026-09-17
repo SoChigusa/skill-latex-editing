@@ -78,3 +78,4 @@ Do not write “A is C, not B” merely because the author asked that question d
 - Prefer primary papers for technical claims and authoritative sources for standards or software behavior.
 - Verify that every added citation directly supports the associated claim. Inspect the relevant method instead of classifying a work by its title alone.
 - Do not pad the bibliography with adjacent but physically different systems.
+- Cite a paper once within a continuous discussion, including adjacent sentences that develop the same point. Repeat its citation only when the context changes, not merely because a new sentence or paragraph begins. Place the citation so that the supported claims are clear; consolidate repeated citations locally without removing later citations in a different context. Preserve citations inside coauthor comments and original passages explicitly kept for reference.
