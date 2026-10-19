@@ -12,7 +12,7 @@
 - Use `align` for display mathematics unless the project explicitly requires another environment.
 - Put separate displayed relations on separate visual lines and align related derivations at `&=` or the relevant comparison operator.
 - Avoid unrelated equations side by side; short conditions may share a line when readability improves.
-- Use labels and semantic cross-references rather than hard-coded equation or figure numbers.
+- Use labels and `\cref{...}` for cross-references to equations, sections/subsections, appendices, figures, and tables; use `\cref{...}` at the start of a sentence as well. Use capitalized abbreviations `Eq.`/`Eqs.` and `Sec.`/`Secs.` throughout, including sentence beginnings; configure `cleveref` names accordingly instead of expanding them to `Equation` or `Section`. Load `cleveref` after `hyperref` when needed. Let the command supply the reference name instead of writing `Eq.~\eqref{...}` or `Section~\ref{...}`, and avoid hard-coded numbers. Preserve protected coauthor comments and verbatim retained passages during a conversion.
 
 ## Source bibliography entries
 

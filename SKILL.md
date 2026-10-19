@@ -23,6 +23,12 @@ For a comment-only review, apply `latex-collaborative-revision` when relevant an
 ## Handle author comments safely
 
 Discover the comment macros before responding.
+Use `\rem{...}` for the author's requests and questions to Codex and `\AI{...}` for Codex's inline replies, unless the user explicitly designates another pair.
+All other comment macros, including `\SC{...}`, `\mm{...}`, `\nw{...}`, and `\comm{...}`, are protected collaboration history: preserve each complete invocation verbatim, its occurrence count, its order within the comment thread, and its association with the relevant passage.
+When the user requests moving or restructuring a passage, move its attached comments with it as needed; separate permission to move those comments is not required.
+Do not delete, rewrite, resolve, rename, or convert this history, or move comments independently of their associated passage, unless the user explicitly requests that change to those comments.
+A comment remains protected even when its point has been addressed in the revised prose or it appears obsolete or redundant; a general request to revise the manuscript or address comments does not authorize deleting comments or modifying their contents.
+
 Use this default convention when the manuscript defines these commands:
 
 - Treat `\rem{...}` as an actionable revision request.
@@ -57,5 +63,7 @@ When the author asks whether “A is really C rather than B,” write the final 
 ## Verify and hand off
 
 Apply the compilation, log inspection, visual verification, latexdiff, and artifact-retention rules in [references/latex-workflow.md](references/latex-workflow.md).
-Confirm that protected author comments and unrelated files did not change.
+Compare protected comment invocations against the pre-edit source, checking complete contents, occurrence counts, order within each thread, and association with the relevant passage; inspect any relocation to confirm that it follows an authorized passage move or restructuring.
+Do not rely only on counts or an unordered comparison, and do not require unchanged global comment order or placement when passages move.
+Confirm that unrelated files did not change, and do not strip protected comments from latexdiff inputs to simplify a build.
 Report the completed outcome, the files changed, the verification performed, and any unresolved issue.
