@@ -1,4 +1,4 @@
 interface:
   display_name: "LaTeX Editing"
-  short_description: "Edit, compile, and retain selected LaTeX build outputs"
-  default_prompt: "Use $latex-editing to edit and compile this LaTeX source, retaining only its BBL, PDF, and SyncTeX outputs."
+  short_description: "Draft, revise, and verify academic LaTeX manuscripts"
+  default_prompt: "Use $latex-editing to draft or revise this academic LaTeX manuscript, preserving author intent and verifying the source, bibliography, and PDF."
