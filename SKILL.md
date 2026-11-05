@@ -69,16 +69,15 @@ If the project specifies different semantics, follow the project-specific conven
 Do not encode the dialogue in the paper.
 When the author asks whether “A is really C rather than B,” write the final positive account of C unless the A/B contrast is scientifically necessary.
 
-## Keep layout work proportional
+## Make visual checks and typesetting opt-in
 
-- Continue to correct local typesetting problems, such as overfull boxes, clipping, or collisions, when they occur in or immediately around the material changed by the current request.
-- Treat ordinary manuscript edits as iterative steps rather than final typesetting passes. Do not chase downstream pagination changes or adjust unrelated parts of the manuscript merely to optimize the document's overall appearance.
-- Do not introduce manuscript-wide line-spacing, text-height, float-placement, page-balancing, or similar global layout adjustments unless the user explicitly requests full-document formatting or visual polish.
-- When the user does explicitly request a whole-manuscript layout pass, inspect the complete rendered output and perform the same careful level of visual adjustment across the document, including downstream pagination and float placement.
+- For ordinary manuscript edits, verify the source, compile, and inspect build logs. Do not render PDF pages to images, open PDFs for visual inspection, or adjust margins, whitespace, pagination, float placement, or other typesetting unless the user explicitly requests that work. Changes to prose, equations, figures, tables, or floats do not by themselves authorize it.
+- Fix compilation errors and unresolved references or citations. Report layout warnings from the log without automatically starting a visual review or layout pass.
+- When the user explicitly requests visual verification or typesetting, inspect and adjust only the requested material. Review the whole document only when the user requests a whole-document pass.
 
 ## Verify and hand off
 
-Apply the compilation, log inspection, visual verification, latexdiff, and artifact-retention rules in [references/latex-workflow.md](references/latex-workflow.md).
+Apply the compilation, log inspection, latexdiff, and artifact-retention rules, and the explicit-request requirement for visual verification, in [references/latex-workflow.md](references/latex-workflow.md).
 Compare protected comment invocations against the pre-edit source, checking complete contents, occurrence counts, order within each thread, and association with the relevant passage; inspect any relocation to confirm that it follows an authorized passage move or restructuring.
 Do not rely only on counts or an unordered comparison, and do not require unchanged global comment order or placement when passages move.
 Confirm that unrelated files did not change, and do not strip protected comments from latexdiff inputs to simplify a build.

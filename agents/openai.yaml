@@ -1,4 +1,4 @@
 interface:
   display_name: "LaTeX Editing"
   short_description: "Draft, revise, and verify academic LaTeX manuscripts"
-  default_prompt: "Use $latex-editing to draft or revise this academic LaTeX manuscript, preserving author intent and verifying the source, bibliography, and PDF."
+  default_prompt: "Use $latex-editing to draft or revise this academic LaTeX manuscript, preserving author intent and verifying the source, bibliography, compilation, and build logs; perform PDF visual checks or typesetting only if explicitly requested."

@@ -61,14 +61,14 @@ Do not write “A is C, not B” merely because the author asked that question d
 
 ## Figures and tables
 
-- Inspect the actual figure or table artifact before changing its size, caption, or interpretation.
+- Read the figure or table source and surrounding text before changing its content or caption. Follow the explicit-request requirement in `SKILL.md` for visual inspection and typesetting.
 - Update the filename, float width, caption, body discussion, and cross-references together.
 - Choose one- or two-column width from legibility, aspect ratio, and author preference.
 - Describe what each panel shows and define line styles, markers, colors, reference values, and injected parameters.
 - Make captions self-contained about panels and conditions; reserve interpretation for the body.
 - Avoid repeating the caption verbatim in the body.
 - Keep figure numbering and reading order stable.
-- Prevent deferred floats from appearing in a later section or after unrelated material.
+- Change float placement or downstream pagination only as part of explicitly requested typesetting work.
 - Check tables for units, normalization, significant figures, and explanatory column headings.
 
 ## Literature discipline
